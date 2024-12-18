@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import "../components/ProblemTable.css"
 
 const ProblemTable = () => {
     const [data, setData] = useState([]);
@@ -45,7 +46,14 @@ const ProblemTable = () => {
                         <td>{item.description}</td>
                         <td>{item.difficulty}</td>
                         <td>{item.category}</td>
-                        <td>{item.tags && item.tags.join(", ")}</td>
+                        {/* <td>{item.tags && item.tags.join(", ")}</td> */}
+                        <td>
+                            {item.tags && item.tags.map((tag, index) => (
+                                <span key={index} className="tag-button">
+                                    {tag}
+                                </span>
+                            ))}
+                        </td>
                         <td>
                             <a href={item.link} target="_blank" rel="noopener noreferrer">
                                 View Problem
