@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
-import "../components/ProblemTable.css"
+import "../components/ProblemTable.css";
+import axios from 'axios';
 
 const ProblemTable = () => {
     const [data, setData] = useState([]);
@@ -9,9 +10,8 @@ const ProblemTable = () => {
         // Fetch data from the API
         const fetchData = async () => {
             try {
-                const response = await fetch('http://localhost:8000/user/get-all-problems'); // Replace with your API endpoint
-                const result = await response.json();
-                setData(result);
+                const response = await axios.get('http://localhost:8000/user/get-all-problems');
+                setData(response.data);
                 setLoading(false);
             } catch (error) {
                 console.error('Error fetching data:', error);
@@ -36,7 +36,7 @@ const ProblemTable = () => {
                     <th>Category</th>
                     <th>Tags</th>
                     <th>Link</th>
-                    <th>Solution</th>
+                    <th>Hints</th>
                 </tr>
             </thead>
             <tbody>
